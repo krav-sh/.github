@@ -1,0 +1,17 @@
+# Local development
+.claude/settings.local.json
+.claude/worktrees/
+tmp/
+.env
+
+# Linter caches
+.rumdl_cache/
+
+# Vale synced packages (keep vocabulary and project styles)
+.vale/*
+!.vale/config/
+!.vale/krav/
+.vale/config/*
+!.vale/config/vocabularies/
+.vale/config/vocabularies/*
+!.vale/config/vocabularies/krav/

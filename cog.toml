@@ -1,0 +1,14 @@
+tag_prefix = "v"
+
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+repository = "krav"
+owner = "krav-sh"
+authors = [{ username = "tbhb", signature = "Tony Burns" }]
+
+[commit_types]
+krav = { omit_from_changelog = true }
+chore = { omit_from_changelog = true }
+test = { omit_from_changelog = true }

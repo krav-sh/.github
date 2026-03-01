@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krav — brand guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  /* ============================================================
+     KRAV DESIGN TOKENS — OKLCH
+     Tailwind 4 compatible @theme syntax
+     ============================================================ */
+
+  :root {
+    /* Core palette — OKLCH */
+    --krav-night:  oklch(0.1641 0.0044 84.59);   /* #0f0e0c */
+    --krav-bark:   oklch(0.2765 0.0117 67.31);   /* #2c2722 */
+    --krav-stone:  oklch(0.529 0.0215 75.15);    /* #736a5e */
+    --krav-sand:   oklch(0.8087 0.0235 78.19);   /* #c9bfb0 */
+    --krav-linen:  oklch(0.9299 0.0149 80.71);   /* #ede7dd */
+    --krav-amber:  oklch(0.6839 0.1192 71.45);   /* #c78c3c */
+    --krav-moss:   oklch(0.61 0.0822 137.63);    /* #6b8f5e */
+    --krav-clay:   oklch(0.5689 0.1203 27.89);   /* #b3584e */
+
+    /* Semantic aliases */
+    --krav-brand:    var(--krav-amber);
+    --krav-success:  var(--krav-moss);
+    --krav-error:    var(--krav-clay);
+    --krav-warning:  var(--krav-amber);
+    --krav-muted:    var(--krav-stone);
+
+    /* Dark theme (default) */
+    --krav-bg:       var(--krav-night);
+    --krav-surface:  var(--krav-bark);
+    --krav-fg:       var(--krav-sand);
+    --krav-fg-muted: var(--krav-stone);
+
+    /* Typography */
+    --krav-font-display: 'Sora', sans-serif;
+    --krav-font-body: 'DM Sans', sans-serif;
+    --krav-font-mono: 'JetBrains Mono', monospace;
+  }
+
+  /* Light theme override */
+  [data-theme="light"] {
+    --krav-bg:       var(--krav-linen);
+    --krav-surface:  oklch(0.9 0.012 80);
+    --krav-fg:       var(--krav-bark);
+    --krav-fg-muted: var(--krav-stone);
+  }
+
+  /* ============================================================
+     BASE STYLES
+     ============================================================ */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--krav-font-body);
+    background: #0e0e10;
+    color: #b0b0b8;
+    padding: 48px 32px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: 56px;
+  }
+
+  .page-header h1 {
+    font-family: var(--krav-font-display);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b76;
+    margin-bottom: 12px;
+  }
+
+  .page-header p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #78787f;
+    max-width: 640px;
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .section {
+    border: 1px solid #1e1e24;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #141417;
+  }
+
+  .section-header {
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid #1e1e24;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .section-header h2 {
+    font-family: var(--krav-font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9090a0;
+  }
+
+  .section-header .tag {
+    font-size: 12px;
+    color: #55555f;
+    font-family: var(--krav-font-mono);
+  }
+
+  .section-body {
+    padding: 40px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .section-notes {
+    padding: 16px 28px 20px;
+    border-top: 1px solid #1e1e24;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #55555f;
+  }
+
+  .label {
+    font-family: var(--krav-font-mono);
+    font-size: 11px;
+    color: #3a3a42;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+  }
+
+  .variant-label {
+    font-size: 11px;
+    color: #44444d;
+    font-family: var(--krav-font-mono);
+    letter-spacing: 0.05em;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .variant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pad {
+    border-radius: 12px;
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* ============================================================
+     PALETTE DISPLAY
+     ============================================================ */
+
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  @media (max-width: 640px) {
+    .palette-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .swatch-card {
+    border: 1px solid #1e1e24;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0e0e10;
+  }
+
+  .swatch-preview {
+    height: 80px;
+    position: relative;
+  }
+
+  .swatch-preview .mark-preview {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    opacity: 0.5;
+  }
+
+  .swatch-info {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .swatch-name {
+    font-family: var(--krav-font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: #c0c0c8;
+  }
+
+  .swatch-values {
+    font-family: var(--krav-font-mono);
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: #55555f;
+  }
+
+  .swatch-role {
+    font-family: var(--krav-font-mono);
+    font-size: 10px;
+    color: #3a3a42;
+    margin-top: 2px;
+  }
+
+  /* ============================================================
+     CODE BLOCKS
+     ============================================================ */
+
+  .code-block {
+    background: #0a0a0c;
+    border: 1px solid #1a1a20;
+    border-radius: 10px;
+    padding: 24px 28px;
+    font-family: var(--krav-font-mono);
+    font-size: 12.5px;
+    color: #a0a0aa;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .code-block .comment { color: #44444d; }
+  .code-block .key { color: #c78c3c; }
+  .code-block .val { color: #c9bfb0; }
+  .code-block .str { color: #6b8f5e; }
+  .code-block .fn { color: #b3584e; }
+
+  .code-label {
+    font-family: var(--krav-font-mono);
+    font-size: 11px;
+    color: #55555f;
+    letter-spacing: 0.04em;
+    align-self: flex-start;
+    margin-left: calc((100% - 760px) / 2);
+    margin-bottom: -20px;
+  }
+
+  /* ============================================================
+     THEME MOCKUPS
+     ============================================================ */
+
+  .theme-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .theme-panel {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .theme-panel.dark {
+    background: #0f0e0c;
+  }
+
+  .theme-panel.light {
+    background: #ede7dd;
+  }
+
+  .theme-label {
+    font-family: var(--krav-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .theme-panel.dark .theme-label { color: #55555f; }
+  .theme-panel.light .theme-label { color: #a09888; }
+
+  /* ============================================================
+     ASSET CATALOG
+     ============================================================ */
+
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    width: 100%;
+  }
+
+  .asset-card {
+    border: 1px solid #1e1e24;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0e0e10;
+  }
+
+  .asset-preview {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0c;
+  }
+
+  .asset-info {
+    padding: 10px 12px;
+  }
+
+  .asset-name {
+    font-family: var(--krav-font-mono);
+    font-size: 11px;
+    color: #8888a0;
+    word-break: break-all;
+  }
+
+  .asset-meta {
+    font-family: var(--krav-font-mono);
+    font-size: 10px;
+    color: #3a3a42;
+    margin-top: 2px;
+  }
+
+  /* CLI mockup */
+  .cli-block {
+    background: #0a0a0c;
+    border: 1px solid #1a1a20;
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: var(--krav-font-mono);
+    font-size: 13px;
+    color: #a0a0aa;
+    line-height: 1.8;
+    white-space: pre;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  /* Avatar helper */
+  .avatar {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .avatar.circle { border-radius: 50%; }
+
+  .size-row {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="page-header">
+  <h1>krav — brand guide</h1>
+  <p>Design tokens, OKLCH color system, Tailwind 4 configuration, asset catalog, and usage guidelines. Everything you need to ship a consistent brand across docs, CLI, social, and swag.</p>
+</div>
+
+<div class="sections">
+
+  <!-- ============================================================
+       1. OKLCH COLOR PALETTE
+       ============================================================ -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Color palette</h2>
+      <span class="tag">OKLCH · perceptually uniform · 8 tokens</span>
+    </div>
+    <div class="section-body">
+      <span class="label">Core palette</span>
+      <div class="palette-grid">
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #0f0e0c;">
+            <svg class="mark-preview" width="24" height="24" viewBox="0 0 100 100">
+              <line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="7" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="7" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="7" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="7" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="30" cy="15" r="9" fill="#c9bfb0"/><circle cx="30" cy="50" r="9" fill="#c9bfb0"/><circle cx="30" cy="85" r="9" fill="#c9bfb0"/><circle cx="50" cy="50" r="9" fill="#c9bfb0"/><circle cx="76" cy="20" r="9" fill="#c9bfb0"/><circle cx="76" cy="80" r="9" fill="#c9bfb0"/>
+            </svg>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">night</div>
+            <div class="swatch-values">oklch(0.164 0.004 84.6)<br>#0f0e0c<br>rgb(15, 14, 12)</div>
+            <div class="swatch-role">bg · dark theme</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #2c2722;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">bark</div>
+            <div class="swatch-values">oklch(0.277 0.012 67.3)<br>#2c2722<br>rgb(44, 39, 34)</div>
+            <div class="swatch-role">surface · fg on light</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #736a5e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">stone</div>
+            <div class="swatch-values">oklch(0.529 0.022 75.2)<br>#736a5e<br>rgb(115, 106, 94)</div>
+            <div class="swatch-role">muted · borders · secondary</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #c9bfb0;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">sand</div>
+            <div class="swatch-values">oklch(0.809 0.024 78.2)<br>#c9bfb0<br>rgb(201, 191, 176)</div>
+            <div class="swatch-role">fg · dark theme text</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #ede7dd;">
+            <svg class="mark-preview" width="24" height="24" viewBox="0 0 100 100">
+              <line x1="30" y1="15" x2="30" y2="50" stroke="#2c2722" stroke-width="7" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#2c2722" stroke-width="7" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#2c2722" stroke-width="7" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#2c2722" stroke-width="7" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#2c2722" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="30" cy="15" r="9" fill="#2c2722"/><circle cx="30" cy="50" r="9" fill="#2c2722"/><circle cx="30" cy="85" r="9" fill="#2c2722"/><circle cx="50" cy="50" r="9" fill="#2c2722"/><circle cx="76" cy="20" r="9" fill="#2c2722"/><circle cx="76" cy="80" r="9" fill="#2c2722"/>
+            </svg>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">linen</div>
+            <div class="swatch-values">oklch(0.930 0.015 80.7)<br>#ede7dd<br>rgb(237, 231, 221)</div>
+            <div class="swatch-role">bg · light theme</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #c78c3c;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">amber</div>
+            <div class="swatch-values">oklch(0.684 0.119 71.5)<br>#c78c3c<br>rgb(199, 140, 60)</div>
+            <div class="swatch-role">brand · accent · warnings</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #6b8f5e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">moss</div>
+            <div class="swatch-values">oklch(0.610 0.082 137.6)<br>#6b8f5e<br>rgb(107, 143, 94)</div>
+            <div class="swatch-role">success · passed · ok</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #b3584e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">clay</div>
+            <div class="swatch-values">oklch(0.569 0.120 27.9)<br>#b3584e<br>rgb(179, 88, 78)</div>
+            <div class="swatch-role">error · failed · destructive</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-notes">
+      The entire palette sits on a warm hue axis (67°–85° for neutrals, shifting to 71° for amber). This shared warmth is why the colors feel cohesive rather than arbitrary. Moss and clay provide the semantic range (success/error) while staying within a natural earth-tone family. The neutrals form a perceptually even ramp from L=0.16 (night) to L=0.93 (linen).
+    </div>
+  </div>
+
+  <!-- ============================================================
+       2. TAILWIND 4 / CSS TOKENS
+       ============================================================ -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Design tokens</h2>
+      <span class="tag">Tailwind 4 · CSS custom properties</span>
+    </div>
+    <div class="section-body">
+      <span class="code-label">tailwind.css — @theme block</span>
+      <div class="code-block"><span class="comment">/* Tailwind 4 — paste into your main CSS file */</span>
+
+<span class="key">@theme</span> {
+  <span class="comment">/* Core palette */</span>
+  <span class="key">--color-night</span>:  <span class="val">oklch(0.1641 0.0044 84.59)</span>;
+  <span class="key">--color-bark</span>:   <span class="val">oklch(0.2765 0.0117 67.31)</span>;
+  <span class="key">--color-stone</span>:  <span class="val">oklch(0.529 0.0215 75.15)</span>;
+  <span class="key">--color-sand</span>:   <span class="val">oklch(0.8087 0.0235 78.19)</span>;
+  <span class="key">--color-linen</span>:  <span class="val">oklch(0.9299 0.0149 80.71)</span>;
+  <span class="key">--color-amber</span>:  <span class="val">oklch(0.6839 0.1192 71.45)</span>;
+  <span class="key">--color-moss</span>:   <span class="val">oklch(0.61 0.0822 137.63)</span>;
+  <span class="key">--color-clay</span>:   <span class="val">oklch(0.5689 0.1203 27.89)</span>;
+
+  <span class="comment">/* Semantic aliases */</span>
+  <span class="key">--color-brand</span>:   <span class="val">var(--color-amber)</span>;
+  <span class="key">--color-success</span>: <span class="val">var(--color-moss)</span>;
+  <span class="key">--color-error</span>:   <span class="val">var(--color-clay)</span>;
+  <span class="key">--color-muted</span>:   <span class="val">var(--color-stone)</span>;
+
+  <span class="comment">/* Typography */</span>
+  <span class="key">--font-display</span>: <span class="str">'Sora', sans-serif</span>;
+  <span class="key">--font-body</span>:    <span class="str">'DM Sans', sans-serif</span>;
+  <span class="key">--font-mono</span>:    <span class="str">'JetBrains Mono', monospace</span>;
+}</div>
+
+      <span class="code-label">CSS custom properties — for non-Tailwind projects</span>
+      <div class="code-block"><span class="key">:root</span> {
+  <span class="comment">/* Dark theme (default) */</span>
+  <span class="key">--krav-bg</span>:       <span class="val">oklch(0.1641 0.0044 84.59)</span>;  <span class="comment">/* night */</span>
+  <span class="key">--krav-surface</span>:  <span class="val">oklch(0.2765 0.0117 67.31)</span>;  <span class="comment">/* bark */</span>
+  <span class="key">--krav-fg</span>:       <span class="val">oklch(0.8087 0.0235 78.19)</span>;  <span class="comment">/* sand */</span>
+  <span class="key">--krav-fg-muted</span>: <span class="val">oklch(0.529 0.0215 75.15)</span>;   <span class="comment">/* stone */</span>
+  <span class="key">--krav-brand</span>:    <span class="val">oklch(0.6839 0.1192 71.45)</span>;  <span class="comment">/* amber */</span>
+  <span class="key">--krav-success</span>:  <span class="val">oklch(0.61 0.0822 137.63)</span>;   <span class="comment">/* moss */</span>
+  <span class="key">--krav-error</span>:    <span class="val">oklch(0.5689 0.1203 27.89)</span>;  <span class="comment">/* clay */</span>
+}
+
+<span class="comment">/* Light theme */</span>
+<span class="key">[data-theme="light"]</span> {
+  <span class="key">--krav-bg</span>:       <span class="val">oklch(0.9299 0.0149 80.71)</span>;  <span class="comment">/* linen */</span>
+  <span class="key">--krav-surface</span>:  <span class="val">oklch(0.9 0.012 80)</span>;          <span class="comment">/* linen-dark */</span>
+  <span class="key">--krav-fg</span>:       <span class="val">oklch(0.2765 0.0117 67.31)</span>;  <span class="comment">/* bark */</span>
+  <span class="key">--krav-fg-muted</span>: <span class="val">oklch(0.529 0.0215 75.15)</span>;   <span class="comment">/* stone */</span>
+}</div>
+
+      <span class="code-label">Usage examples</span>
+      <div class="code-block"><span class="comment">/* Tailwind 4 utility classes */</span>
+<span class="str">&lt;div class="bg-night text-sand"&gt;</span>
+<span class="str">&lt;span class="text-amber font-display"&gt;</span>krav<span class="str">&lt;/span&gt;</span>
+<span class="str">&lt;p class="text-stone font-mono"&gt;</span>v0.1.0<span class="str">&lt;/p&gt;</span>
+
+<span class="comment">/* Status indicators */</span>
+<span class="str">&lt;span class="text-moss"&gt;</span>✓ passed<span class="str">&lt;/span&gt;</span>
+<span class="str">&lt;span class="text-clay"&gt;</span>✗ failed<span class="str">&lt;/span&gt;</span>
+<span class="str">&lt;span class="text-amber"&gt;</span>⚠ warning<span class="str">&lt;/span&gt;</span></div>
+    </div>
+    <div class="section-notes">
+      OKLCH is the native color space for Tailwind 4 and modern CSS. These values produce identical results to the hex fallbacks in all browsers that support oklch() (97%+ as of early 2026). The semantic aliases mean you write <code style="font-size: 12px; color: #888;">text-brand</code> instead of <code style="font-size: 12px; color: #888;">text-amber</code>, so the accent color can change without touching markup.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       3. DARK / LIGHT THEME MOCKUP
+       ============================================================ -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Theme comparison</h2>
+      <span class="tag">dark · light · side by side</span>
+    </div>
+    <div class="section-body">
+      <span class="label">Lockup + UI elements</span>
+      <div class="theme-split">
+        <div class="theme-panel dark">
+          <span class="theme-label" style="color: #55555f;">Dark theme</span>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <svg width="40" height="40" viewBox="0 0 100 100">
+              <line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="5" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="5" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="30" cy="15" r="7" fill="#c9bfb0"/><circle cx="30" cy="50" r="7" fill="#c9bfb0"/><circle cx="30" cy="85" r="7" fill="#c9bfb0"/><circle cx="50" cy="50" r="7" fill="#c9bfb0"/><circle cx="76" cy="20" r="7" fill="#c9bfb0"/><circle cx="76" cy="80" r="7" fill="#c9bfb0"/>
+            </svg>
+            <svg width="100" height="30" viewBox="0 0 100 30"><text x="0" y="24" font-family="Sora, sans-serif" font-weight="600" font-size="28" letter-spacing="3" fill="#c9bfb0">krav</text></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 260px; background: #2c2722; border-radius: 8px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+            <div style="color: #6b8f5e;">✓ 3 policies passed</div>
+            <div style="color: #b3584e;">✗ TC-03 failed</div>
+            <div style="color: #c78c3c;">⚠ NEED-04 unlinked</div>
+            <div style="color: #736a5e;">⊘ 2 tasks pending</div>
+          </div>
+        </div>
+        <div class="theme-panel light">
+          <span class="theme-label" style="color: #a09888;">Light theme</span>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <svg width="40" height="40" viewBox="0 0 100 100">
+              <line x1="30" y1="15" x2="30" y2="50" stroke="#2c2722" stroke-width="5" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#2c2722" stroke-width="5" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#2c2722" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#2c2722" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#2c2722" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="30" cy="15" r="7" fill="#2c2722"/><circle cx="30" cy="50" r="7" fill="#2c2722"/><circle cx="30" cy="85" r="7" fill="#2c2722"/><circle cx="50" cy="50" r="7" fill="#2c2722"/><circle cx="76" cy="20" r="7" fill="#2c2722"/><circle cx="76" cy="80" r="7" fill="#2c2722"/>
+            </svg>
+            <svg width="100" height="30" viewBox="0 0 100 30"><text x="0" y="24" font-family="Sora, sans-serif" font-weight="600" font-size="28" letter-spacing="3" fill="#2c2722">krav</text></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 260px; background: #e2dbd0; border-radius: 8px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+            <div style="color: #4a7040;">✓ 3 policies passed</div>
+            <div style="color: #9e3f35;">✗ TC-03 failed</div>
+            <div style="color: #a07028;">⚠ NEED-04 unlinked</div>
+            <div style="color: #8a8070;">⊘ 2 tasks pending</div>
+          </div>
+        </div>
+      </div>
+
+      <span class="label">CLI output comparison</span>
+      <div class="theme-split">
+        <div class="theme-panel dark" style="padding: 24px 20px;">
+          <div class="cli-block" style="font-size: 12px; max-width: 100%; border: none; padding: 0; background: transparent;"><span style="color: #736a5e;">$</span> <span style="color: #c8c8d0;">krav status</span>
+<span style="color: #c78c3c;">⬡</span> 4 needs · 12 reqs · 0 defects
+<span style="color: #6b8f5e;">✓</span> all policies passing
+<span style="color: #c78c3c;">⚠</span> 1 warning</div>
+        </div>
+        <div class="theme-panel light" style="padding: 24px 20px;">
+          <div class="cli-block" style="font-size: 12px; max-width: 100%; border: none; padding: 0; background: transparent; color: #5a5248;"><span style="color: #a09888;">$</span> <span style="color: #2c2722;">krav status</span>
+<span style="color: #a07028;">⬡</span> 4 needs · 12 reqs · 0 defects
+<span style="color: #4a7040;">✓</span> all policies passing
+<span style="color: #a07028;">⚠</span> 1 warning</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-notes">
+      Both themes use the same semantic token names, just remapped. Dark: night bg + sand text. Light: linen bg + bark text. Amber, moss, and clay adjust slightly in lightness for light-mode readability (darker variants for better contrast against the linen background). The surface color (bark in dark, slightly darker linen in light) provides the card/panel differentiation layer.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       4. TYPOGRAPHY
+       ============================================================ -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Typography</h2>
+      <span class="tag">Sora · DM Sans · JetBrains Mono</span>
+    </div>
+    <div class="section-body">
+      <div class="theme-split">
+        <div class="theme-panel dark" style="align-items: flex-start; padding: 32px;">
+          <div style="font-family: 'Sora', sans-serif; font-weight: 600; font-size: 32px; letter-spacing: 3px; color: #c9bfb0;">krav</div>
+          <div style="font-family: 'Sora', sans-serif; font-weight: 600; font-size: 20px; color: #c9bfb0; margin-top: 8px;">Display heading</div>
+          <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #a09888; line-height: 1.6; margin-top: 8px;">Body text in DM Sans. Clean and readable for documentation, descriptions, and longer-form content. Pairs with Sora's geometric structure without competing.</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #736a5e; margin-top: 8px;">mono: krav check --verbose</div>
+        </div>
+        <div class="theme-panel light" style="align-items: flex-start; padding: 32px;">
+          <div style="font-family: 'Sora', sans-serif; font-weight: 600; font-size: 32px; letter-spacing: 3px; color: #2c2722;">krav</div>
+          <div style="font-family: 'Sora', sans-serif; font-weight: 600; font-size: 20px; color: #2c2722; margin-top: 8px;">Display heading</div>
+          <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #5a5248; line-height: 1.6; margin-top: 8px;">Body text in DM Sans. Clean and readable for documentation, descriptions, and longer-form content. Pairs with Sora's geometric structure without competing.</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8a8070; margin-top: 8px;">mono: krav check --verbose</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-notes">
+      Sora is the display and wordmark face — geometric skeleton with optical corrections that give it human warmth. DM Sans handles body copy. JetBrains Mono for code, CLI output, and technical labels. All three are Google Fonts, free and widely available. The letter-spacing on the wordmark is 3px at display sizes; tighten to 1-2px below 20px.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5. ASSET CATALOG
+       ============================================================ -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Asset catalog</h2>
+      <span class="tag">generated files in krav-brand-assets.zip</span>
+    </div>
+    <div class="section-body" style="align-items: stretch;">
+      <span class="label">Favicons</span>
+      <div class="asset-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
+        <div class="asset-card">
+          <div class="asset-preview">
+            <div class="avatar" style="width: 16px; height: 16px; background: #0f0e0c;">
+              <svg width="12" height="12" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="12" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="12" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="12" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="12" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="12" stroke-linecap="round"/><circle cx="30" cy="15" r="12" fill="#c9bfb0"/><circle cx="30" cy="50" r="12" fill="#c9bfb0"/><circle cx="30" cy="85" r="12" fill="#c9bfb0"/><circle cx="50" cy="50" r="12" fill="#c9bfb0"/><circle cx="76" cy="20" r="12" fill="#c9bfb0"/><circle cx="76" cy="80" r="12" fill="#c9bfb0"/></svg>
+            </div>
+          </div>
+          <div class="asset-info">
+            <div class="asset-name">favicon-16.png</div>
+            <div class="asset-meta">16×16 · browser tab</div>
+          </div>
+        </div>
+        <div class="asset-card">
+          <div class="asset-preview">
+            <div class="avatar" style="width: 32px; height: 32px; background: #0f0e0c;">
+              <svg width="24" height="24" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="8" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="8" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="8" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="8" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="8" stroke-linecap="round"/><circle cx="30" cy="15" r="10" fill="#c9bfb0"/><circle cx="30" cy="50" r="10" fill="#c9bfb0"/><circle cx="30" cy="85" r="10" fill="#c9bfb0"/><circle cx="50" cy="50" r="10" fill="#c9bfb0"/><circle cx="76" cy="20" r="10" fill="#c9bfb0"/><circle cx="76" cy="80" r="10" fill="#c9bfb0"/></svg>
+            </div>
+          </div>
+          <div class="asset-info">
+            <div class="asset-name">favicon-32.png</div>
+            <div class="asset-meta">32×32 · standard favicon</div>
+          </div>
+        </div>
+        <div class="asset-card">
+          <div class="asset-preview">
+            <div class="avatar" style="width: 48px; height: 48px; background: #0f0e0c;">
+              <svg width="36" height="36" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#c9bfb0"/><circle cx="30" cy="50" r="8" fill="#c9bfb0"/><circle cx="30" cy="85" r="8" fill="#c9bfb0"/><circle cx="50" cy="50" r="8" fill="#c9bfb0"/><circle cx="76" cy="20" r="8" fill="#c9bfb0"/><circle cx="76" cy="80" r="8" fill="#c9bfb0"/></svg>
+            </div>
+          </div>
+          <div class="asset-info">
+            <div class="asset-name">apple-touch-icon-180.png</div>
+            <div class="asset-meta">180×180 · iOS home screen</div>
+          </div>
+        </div>
+        <div class="asset-card">
+          <div class="asset-preview">
+            <div class="avatar" style="width: 48px; height: 48px; background: #0f0e0c;">
+              <svg width="36" height="36" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#c9bfb0"/><circle cx="30" cy="50" r="8" fill="#c9bfb0"/><circle cx="30" cy="85" r="8" fill="#c9bfb0"/><circle cx="50" cy="50" r="8" fill="#c9bfb0"/><circle cx="76" cy="20" r="8" fill="#c9bfb0"/><circle cx="76" cy="80" r="8" fill="#c9bfb0"/></svg>
+            </div>
+          </div>
+          <div class="asset-info">
+            <div class="asset-name">android-chrome-512.png</div>
+            <div class="asset-meta">512×512 · PWA / Play Store</div>
+          </div>
+        </div>
+      </div>
+
+      <span class="label">Avatars (8 variants × 6 sizes = 48 files)</span>
+      <div class="row" style="gap: 16px;">
+        <div class="variant">
+          <div class="avatar" style="width: 64px; height: 64px; background: #0f0e0c;">
+            <svg width="48" height="48" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#c9bfb0"/><circle cx="30" cy="50" r="8" fill="#c9bfb0"/><circle cx="30" cy="85" r="8" fill="#c9bfb0"/><circle cx="50" cy="50" r="8" fill="#c9bfb0"/><circle cx="76" cy="20" r="8" fill="#c9bfb0"/><circle cx="76" cy="80" r="8" fill="#c9bfb0"/></svg>
+          </div>
+          <span class="variant-label">dark</span>
+        </div>
+        <div class="variant">
+          <div class="avatar" style="width: 64px; height: 64px; background: #ede7dd;">
+            <svg width="48" height="48" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#2c2722" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#2c2722" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#2c2722" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#2c2722" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#2c2722" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#2c2722"/><circle cx="30" cy="50" r="8" fill="#2c2722"/><circle cx="30" cy="85" r="8" fill="#2c2722"/><circle cx="50" cy="50" r="8" fill="#2c2722"/><circle cx="76" cy="20" r="8" fill="#2c2722"/><circle cx="76" cy="80" r="8" fill="#2c2722"/></svg>
+          </div>
+          <span class="variant-label">light</span>
+        </div>
+        <div class="variant">
+          <div class="avatar" style="width: 64px; height: 64px; background: #c78c3c;">
+            <svg width="48" height="48" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#fff" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#fff" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#fff" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#fff" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#fff" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#fff"/><circle cx="30" cy="50" r="8" fill="#fff"/><circle cx="30" cy="85" r="8" fill="#fff"/><circle cx="50" cy="50" r="8" fill="#fff"/><circle cx="76" cy="20" r="8" fill="#fff"/><circle cx="76" cy="80" r="8" fill="#fff"/></svg>
+          </div>
+          <span class="variant-label">amber</span>
+        </div>
+        <div class="variant">
+          <div class="avatar circle" style="width: 64px; height: 64px; background: #0f0e0c;">
+            <svg width="48" height="48" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#c9bfb0" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#c9bfb0"/><circle cx="30" cy="50" r="8" fill="#c9bfb0"/><circle cx="30" cy="85" r="8" fill="#c9bfb0"/><circle cx="50" cy="50" r="8" fill="#c9bfb0"/><circle cx="76" cy="20" r="8" fill="#c9bfb0"/><circle cx="76" cy="80" r="8" fill="#c9bfb0"/></svg>
+          </div>
+          <span class="variant-label">circle dark</span>
+        </div>
+        <div class="variant">
+          <div class="avatar" style="width: 64px; height: 64px; background: #fff;">
+            <svg width="48" height="48" viewBox="0 0 100 100"><line x1="30" y1="15" x2="30" y2="50" stroke="#000" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="30" y2="85" stroke="#000" stroke-width="6" stroke-linecap="round"/><line x1="30" y1="50" x2="50" y2="50" stroke="#000" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="20" stroke="#000" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="76" y2="80" stroke="#000" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="15" r="8" fill="#000"/><circle cx="30" cy="50" r="8" fill="#000"/><circle cx="30" cy="85" r="8" fill="#000"/><circle cx="50" cy="50" r="8" fill="#000"/><circle cx="76" cy="20" r="8" fill="#000"/><circle cx="76" cy="80" r="8" fill="#000"/></svg>
+          </div>
+          <span class="variant-label">mono b/w</span>
+        </div>
+      </div>
+
+      <span class="label">Social & OG images</span>
+      <div class="asset-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">og-dark-1200x630.png</div><div class="asset-meta">Open Graph · dark</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">og-light-1200x630.png</div><div class="asset-meta">Open Graph · light</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">og-amber-1200x630.png</div><div class="asset-meta">Open Graph · brand</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">twitter-card-800x418.png</div><div class="asset-meta">Twitter/X summary card</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">github-banner-dark-1280x640.png</div><div class="asset-meta">GitHub org banner · dark</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">github-banner-light-1280x640.png</div><div class="asset-meta">GitHub org banner · light</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">github-social-preview-1280x640.png</div><div class="asset-meta">Repo social preview</div></div></div>
+      </div>
+
+      <span class="label">SVG marks</span>
+      <div class="asset-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">krav-mark-currentcolor.svg</div><div class="asset-meta">inherits CSS color</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">krav-mark-dark.svg</div><div class="asset-meta">bark (#2c2722)</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">krav-mark-light.svg</div><div class="asset-meta">sand (#c9bfb0)</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">krav-mark-amber.svg</div><div class="asset-meta">amber (#c78c3c)</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">krav-mark-black.svg</div><div class="asset-meta">pure black</div></div></div>
+        <div class="asset-card"><div class="asset-info"><div class="asset-name">krav-mark-white.svg</div><div class="asset-meta">pure white</div></div></div>
+      </div>
+    </div>
+    <div class="section-notes">
+      All raster assets are generated at exact pixel sizes — no upscaling. The OG images and banners use DejaVu Sans as a placeholder for Sora (which isn't available in the generation environment). For production use, regenerate the OG images with Sora loaded, or use the SVG mark + web fonts in an HTML-to-image pipeline. The SVG marks use <code style="font-size: 12px; color: #888;">currentColor</code> by default so they inherit from CSS.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       6. HTML HEAD SNIPPET
+       ============================================================ -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Implementation</h2>
+      <span class="tag">HTML head · favicon snippet · meta tags</span>
+    </div>
+    <div class="section-body">
+      <span class="code-label">HTML &lt;head&gt; snippet</span>
+      <div class="code-block"><span class="comment">&lt;!-- Favicons --&gt;</span>
+<span class="val">&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;</span>
+<span class="val">&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"&gt;</span>
+<span class="val">&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"&gt;</span>
+<span class="val">&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png"&gt;</span>
+
+<span class="comment">&lt;!-- Open Graph --&gt;</span>
+<span class="val">&lt;meta property="og:image" content="/og-dark-1200x630.png"&gt;</span>
+<span class="val">&lt;meta property="og:image:width" content="1200"&gt;</span>
+<span class="val">&lt;meta property="og:image:height" content="630"&gt;</span>
+
+<span class="comment">&lt;!-- Twitter/X --&gt;</span>
+<span class="val">&lt;meta name="twitter:card" content="summary_large_image"&gt;</span>
+<span class="val">&lt;meta name="twitter:image" content="/og-dark-1200x630.png"&gt;</span>
+
+<span class="comment">&lt;!-- Theme color (browser chrome) --&gt;</span>
+<span class="val">&lt;meta name="theme-color" content="#0f0e0c"</span>
+      <span class="val">media="(prefers-color-scheme: dark)"&gt;</span>
+<span class="val">&lt;meta name="theme-color" content="#ede7dd"</span>
+      <span class="val">media="(prefers-color-scheme: light)"&gt;</span>
+
+<span class="comment">&lt;!-- Web manifest --&gt;</span>
+<span class="val">&lt;link rel="manifest" href="/site.webmanifest"&gt;</span></div>
+
+      <span class="code-label">site.webmanifest</span>
+      <div class="code-block">{
+  <span class="key">"name"</span>: <span class="str">"krav"</span>,
+  <span class="key">"short_name"</span>: <span class="str">"krav"</span>,
+  <span class="key">"icons"</span>: [
+    { <span class="key">"src"</span>: <span class="str">"/android-chrome-192.png"</span>, <span class="key">"sizes"</span>: <span class="str">"192x192"</span>, <span class="key">"type"</span>: <span class="str">"image/png"</span> },
+    { <span class="key">"src"</span>: <span class="str">"/android-chrome-512.png"</span>, <span class="key">"sizes"</span>: <span class="str">"512x512"</span>, <span class="key">"type"</span>: <span class="str">"image/png"</span> }
+  ],
+  <span class="key">"theme_color"</span>: <span class="str">"#0f0e0c"</span>,
+  <span class="key">"background_color"</span>: <span class="str">"#0f0e0c"</span>,
+  <span class="key">"display"</span>: <span class="str">"standalone"</span>
+}</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
